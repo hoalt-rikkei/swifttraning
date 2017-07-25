@@ -24,10 +24,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var phoneNum2: UITextField!
     @IBOutlet weak var phoneNum3: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
-    var activeField: UITextField?
+    var activeField: UITextField? //* Lưu ý: Các đối tượng liên quan tới giao diện nên sử dụng weak để tránh retain cycles dẫn tới memory leaks
     
-    var checkBox = UIImage(named: "ic-checked")
-    var uncheckBox = UIImage(named: "ic-unchecked")
+    var checkBox = UIImage(named: "ic-checked") //* Lưu ý: Với những biến có giá trị không thay đổi, nên dùng let không dùng var
+    var uncheckBox = UIImage(named: "ic-unchecked") // Tương tự như trên
     var isMale = true
     
     // MARK: - Setup view
