@@ -10,9 +10,10 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var firstnameInput: UITextField!
     @IBOutlet weak var lastnameInput: UITextField!
-    @IBOutlet weak var fistnameJpInPut: UITextField!
+    @IBOutlet weak var firstnameJpInput: UITextField!
     @IBOutlet weak var lastnameJpInput: UITextField!
     @IBOutlet weak var emailTextInput: UITextField!
     @IBOutlet weak var birthdayInput: UITextField!
@@ -25,10 +26,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var checkBox = UIImage(named: "ic-checked")
     var uncheckBox = UIImage(named: "ic-unchecked")
+    var isMale = true
     
-    var isMale:Bool!
+    // MARK: - Setup view
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        firstnameInput.delegate = self
+        lastnameInput.delegate = self
+        firstnameJpInput.delegate = self
+        lastnameJpInput.delegate = self
+        emailTextInput.delegate = self
+        birthdayInput.delegate = self
+        phoneNum1.delegate = self
+        phoneNum2.delegate = self
+        phoneNum3.delegate = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapGestureAction(sender:)))
+        self.containerView.addGestureRecognizer(tapGesture)
+    }
     
-    
+    // MARK: - Actions
     @IBAction func maleCheck(_ sender: Any) {
         isMale = true
         maleRadio.setImage(checkBox, for: UIControlState.normal)
@@ -42,39 +60,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func submitClick(_ sender: Any) {
-        self.validateTextInput()
+        self.validateAndSubmit()
     }
     
-    let Feilds = ["Email"]
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        firstnameInput.delegate = self
-        lastnameInput.delegate = self
-        fistnameJpInPut.delegate = self
-        lastnameJpInput.delegate = self
-        emailTextInput.delegate = self
-        birthdayInput.delegate = self
-        phoneNum1.delegate = self
-        phoneNum2.delegate = self
-        phoneNum3.delegate = self
-        firstnameInput.returnKeyType = UIReturnKeyType.next
-        lastnameInput.returnKeyType = UIReturnKeyType.next
-        fistnameJpInPut.returnKeyType = UIReturnKeyType.next
-        lastnameJpInput.returnKeyType = UIReturnKeyType.next
-        emailTextInput.returnKeyType = UIReturnKeyType.next
-        birthdayInput.returnKeyType = UIReturnKeyType.next
-        phoneNum1.returnKeyType = UIReturnKeyType.next
-        phoneNum2.returnKeyType = UIReturnKeyType.next
-        phoneNum3.returnKeyType = UIReturnKeyType.done
-        phoneNum1.keyboardType = UIKeyboardType.numberPad
-        phoneNum2.keyboardType = UIKeyboardType.numberPad
-        phoneNum3.keyboardType = UIKeyboardType.numberPad
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.phoneNum1.resignFirstResponder()
+    func tapGestureAction(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,52 +72,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if (text == "\n") {
-            textView.resignFirstResponder()
-        }
-        return true
-    }
-    
-    // MARK: -
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case firstnameInput:
             textField.resignFirstResponder()
             lastnameInput.becomeFirstResponder()
-            break
         case lastnameInput:
             textField.resignFirstResponder()
-            fistnameJpInPut.becomeFirstResponder()
-            break
-        case fistnameJpInPut:
+            firstnameJpInput.becomeFirstResponder()
+        case firstnameJpInput:
             textField.resignFirstResponder()
             lastnameJpInput.becomeFirstResponder()
-            break
         case lastnameJpInput:
             textField.resignFirstResponder()
             emailTextInput.becomeFirstResponder()
-            break
         case emailTextInput:
             textField.resignFirstResponder()
             birthdayInput.becomeFirstResponder()
-            break
         case birthdayInput:
             textField.resignFirstResponder()
             phoneNum1.becomeFirstResponder()
-            break
         case phoneNum1:
             textField.resignFirstResponder()
             phoneNum2.becomeFirstResponder()
-            break
         case phoneNum2:
             textField.resignFirstResponder()
             phoneNum3.becomeFirstResponder()
-            break
         case phoneNum3:
             textField.resignFirstResponder()
-            break
         default:
             break
         }
@@ -149,11 +121,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return result
     }
     
-    func validateTextInput() {
-        
+    func validateAndSubmit() {
         if (firstnameInput.text?.isEmpty)!
             || (lastnameInput.text?.isEmpty)!
-            || (fistnameJpInPut.text?.isEmpty)!
+            || (firstnameJpInput.text?.isEmpty)!
             || (lastnameJpInput.text?.isEmpty)!
             || (emailTextInput.text?.isEmpty)!
             || (birthdayInput.text?.isEmpty)!
@@ -164,9 +135,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         } else if (!self.isValidEmail(emailInput: emailTextInput.text!)){
             self.showAlert(title: "", message: "Email sai định dạng")
         } else {
+            printData()
             self.showAlert(title: "", message: "Đăng ký thành công")
         }
     }
 
+    func printData() {
+        print("Submit data:")
+        print("Name: \(self.firstnameInput.text!) \(self.lastnameInput.text!)")
+        print("Name Kata: \(self.firstnameJpInput.text!) \(self.lastnameJpInput.text!)")
+        print("Email: \(self.emailTextInput.text!)")
+        print("Birthday: \(self.birthdayInput.text!)")
+        print("Sex: \(self.isMale == true ? "Male" : "Female")")
+        print("Phonenumber: \(self.phoneNum1.text!) \(self.phoneNum2.text!) \(self.phoneNum2.text!)")
+    }
 }
 
