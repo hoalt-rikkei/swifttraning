@@ -14,9 +14,19 @@ struct AVResult {
     let loviValue: Int!
 }
 
+//* Gợi ý: Delegate hoặc DataSource nên để riêng ra thành 1 extension cho view controller
+// Ví dụ như bên dưới
+
+//extension ViewController: UITableViewDelegate {
+//   //Code for delegate
+//}
+//
+//extension ViewController: UITableViewDataSource {
+//    //Code for data source
+//}
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-
     @IBOutlet weak var editBtn: UIBarButtonItem!
     @IBOutlet weak var moveBtn: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -41,6 +51,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.titleItem.title = "TrainingExe4"
         
+        //* Gợi ý: Những thiết lập riêng cho từng thành phần (ví dụ như table view) nên để riêng ra 1 hàm
         tableView.dataSource = self
         tableView.delegate = self
         
