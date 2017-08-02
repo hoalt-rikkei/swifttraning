@@ -14,6 +14,7 @@
 		6FB1D7B11F29D0CC00ED2DF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FB1D7AF1F29D0CC00ED2DF7 /* LaunchScreen.storyboard */; };
 		6FB1D7BC1F29D0CD00ED2DF7 /* TrainingExe4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB1D7BB1F29D0CD00ED2DF7 /* TrainingExe4Tests.swift */; };
 		6FB1D7C71F29D0CE00ED2DF7 /* TrainingExe4UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB1D7C61F29D0CE00ED2DF7 /* TrainingExe4UITests.swift */; };
+		6FBFAD391F303DBF00412303 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBFAD381F303DBF00412303 /* NewViewController.swift */; };
 		6FC5E9321F2ACA4C006E60D4 /* AVViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC5E9301F2ACA4C006E60D4 /* AVViewCell.swift */; };
 		6FC5E9331F2ACA4C006E60D4 /* AVViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FC5E9311F2ACA4C006E60D4 /* AVViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		6FB1D7C21F29D0CE00ED2DF7 /* TrainingExe4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrainingExe4UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB1D7C61F29D0CE00ED2DF7 /* TrainingExe4UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingExe4UITests.swift; sourceTree = "<group>"; };
 		6FB1D7C81F29D0CE00ED2DF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6FBFAD381F303DBF00412303 /* NewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		6FC5E9301F2ACA4C006E60D4 /* AVViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVViewCell.swift; sourceTree = "<group>"; };
 		6FC5E9311F2ACA4C006E60D4 /* AVViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 				6FB1D7AD1F29D0CC00ED2DF7 /* Assets.xcassets */,
 				6FB1D7AF1F29D0CC00ED2DF7 /* LaunchScreen.storyboard */,
 				6FB1D7B21F29D0CC00ED2DF7 /* Info.plist */,
+				6FBFAD381F303DBF00412303 /* NewViewController.swift */,
 			);
 			path = TrainingExe4;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				6FC5E9321F2ACA4C006E60D4 /* AVViewCell.swift in Sources */,
 				6FB1D7A91F29D0CC00ED2DF7 /* ViewController.swift in Sources */,
 				6FB1D7A71F29D0CC00ED2DF7 /* AppDelegate.swift in Sources */,
+				6FBFAD391F303DBF00412303 /* NewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

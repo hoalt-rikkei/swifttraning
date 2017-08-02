@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kLq-Bi-khK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,51 +22,90 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HYW-Sf-sex">
-                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lIA-IB-Y57">
-                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="xfd-bT-7Ny"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Title" id="lbW-pU-vrD">
-                                        <barButtonItem key="leftBarButtonItem" title="Edit" id="Wvc-2I-7Lp">
-                                            <connections>
-                                                <action selector="editBtnClick:" destination="BYZ-38-t0r" id="9oN-Sq-qVd"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Move" id="Jq5-Pv-miF">
-                                            <connections>
-                                                <action selector="moveBtnClick:" destination="BYZ-38-t0r" id="1Cc-4O-RzA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="lIA-IB-Y57" secondAttribute="trailing" id="0dE-79-mlH"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HYW-Sf-sex" secondAttribute="bottom" id="AL9-lh-Qld"/>
-                            <constraint firstItem="lIA-IB-Y57" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="G83-0W-Mjg"/>
-                            <constraint firstItem="lIA-IB-Y57" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Nz1-pP-LJH"/>
-                            <constraint firstAttribute="trailing" secondItem="HYW-Sf-sex" secondAttribute="trailing" id="Qsa-Sb-Tqp"/>
-                            <constraint firstItem="HYW-Sf-sex" firstAttribute="top" secondItem="lIA-IB-Y57" secondAttribute="bottom" id="wC3-y1-APN"/>
-                            <constraint firstItem="HYW-Sf-sex" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yMA-DQ-9aE"/>
+                            <constraint firstItem="HYW-Sf-sex" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Cxv-nM-2IQ"/>
+                            <constraint firstItem="HYW-Sf-sex" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fIu-kd-0TM"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HYW-Sf-sex" secondAttribute="bottom" id="gjn-41-aGg"/>
+                            <constraint firstAttribute="trailing" secondItem="HYW-Sf-sex" secondAttribute="trailing" id="jaz-7c-nTB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Aou-sO-cck">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="hpF-FQ-vS6"/>
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="Wvc-2I-7Lp">
+                            <connections>
+                                <action selector="editBtnClick:" destination="BYZ-38-t0r" id="9oN-Sq-qVd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Move" id="Jq5-Pv-miF">
+                            <connections>
+                                <action selector="moveBtnClick:" destination="BYZ-38-t0r" id="1Cc-4O-RzA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="editBtn" destination="Wvc-2I-7Lp" id="A7B-6r-BZg"/>
                         <outlet property="moveBtn" destination="Jq5-Pv-miF" id="uJy-S1-r3f"/>
                         <outlet property="tableView" destination="HYW-Sf-sex" id="oJ8-BX-rff"/>
-                        <outlet property="titleItem" destination="lbW-pU-vrD" id="ktE-IR-Dji"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116" y="123.68815592203899"/>
+            <point key="canvasLocation" x="760.79999999999995" y="176.76161919040482"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="0sf-0g-4GZ">
+            <objects>
+                <viewController storyboardIdentifier="newViewController" id="q9e-yD-D2D" customClass="NewViewController" customModule="TrainingExe4" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yzx-os-MWY"/>
+                        <viewControllerLayoutGuide type="bottom" id="l9W-lI-fuG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ukO-1m-XHN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qk7-3f-v1e">
+                                <rect key="frame" x="170" y="318.5" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backClick:" destination="q9e-yD-D2D" eventType="touchUpInside" id="3hX-rA-exd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qk7-3f-v1e" firstAttribute="centerX" secondItem="ukO-1m-XHN" secondAttribute="centerX" id="70E-Z7-CFE"/>
+                            <constraint firstItem="qk7-3f-v1e" firstAttribute="centerY" secondItem="ukO-1m-XHN" secondAttribute="centerY" id="b2u-Ry-caf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="4fM-MQ-jj6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aws-75-GF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1676" y="190.25487256371815"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ITl-P0-HmW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kLq-Bi-khK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="U4j-pL-dVn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="dGw-6b-yeM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gNx-Jt-LTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-114.40000000000001" y="182.15892053973016"/>
         </scene>
     </scenes>
 </document>
