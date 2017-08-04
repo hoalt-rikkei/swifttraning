@@ -7,12 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-struct AVResult {
-    let captureDate: String!
-    let avValue: Float!
-    let loviValue: Int!
-}
+let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
 class ViewController: UIViewController {
     
@@ -20,26 +17,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var moveBtn: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
-    var arrayOfAVResult = [AVResult]()
+    var arrayOfAVResult: Array<AVResult>!
     var isListEditing = false
     var isListMoving = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        arrayOfAVResult = [
-            AVResult(captureDate: "2014-02-06", avValue: 2.1, loviValue: 279),
-            AVResult(captureDate: "2015-06-06", avValue: 2.2, loviValue: 179),
-            AVResult(captureDate: "2014-05-06", avValue: 2.1, loviValue: 139),
-            AVResult(captureDate: "2016-07-06", avValue: 2.3, loviValue: 219),
-            AVResult(captureDate: "2018-09-06", avValue: 2.1, loviValue: 119),
-            AVResult(captureDate: "2015-05-06", avValue: 2.2, loviValue: 279),
-            AVResult(captureDate: "2013-06-06", avValue: 2.1, loviValue: 329)
-        ]
-        
         self.title = "TrainingExe4"
         
         self.tableViewOption()
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AVResult")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            arrayOfAVResult = try context.fetch(request) as! Array<AVResult>
+            if arrayOfAVResult.count > 0 {
+                for result in arrayOfAVResult as [NSManagedObject] {
+                    if let captureDate = result.value(forKey: "captureDate") as? String {
+                        print(captureDate)
+                    }
+                }
+            }
+        } catch {
+            // Error
+        }
+        
     }
     
     func tableViewOption() {
@@ -55,6 +59,13 @@ class ViewController: UIViewController {
     }
     
     // MARK: - action
+    
+    
+    @IBAction func addBtnClick(_ sender: Any) {
+        let destController = self.storyboard?.instantiateViewController(withIdentifier: "addViewController") as! AddViewController
+        destController.delegate = self
+        self.navigationController?.pushViewController(destController, animated: true)
+    }
     
     @IBAction func editBtnClick(_ sender: Any) {
         if isListMoving {
@@ -88,6 +99,14 @@ class ViewController: UIViewController {
         }
         self.tableView.setEditing(isListMoving, animated: true)
     }
+    
+    // date to string
+    func convertDateToString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
 }
 
 extension ViewController: UITableViewDelegate {
@@ -119,9 +138,9 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "avViewCell", for: indexPath) as! AVViewCell
         cell.commonInit(
             imageName: "thumb",
-            captureString: arrayOfAVResult[indexPath.item].captureDate,
-            avString: "AV \(arrayOfAVResult[indexPath.item].avValue!)",
-            loviString: "WA \(arrayOfAVResult[indexPath.item].loviValue!)"
+            captureString: arrayOfAVResult[indexPath.item].captureDate!,
+            avString: "AV \(arrayOfAVResult[indexPath.item].avValue)",
+            loviString: "WA \(arrayOfAVResult[indexPath.item].loviValue)"
         )
         return cell
     }
@@ -148,5 +167,25 @@ extension ViewController: UITableViewDataSource {
         let movedObject = self.arrayOfAVResult[sourceIndexPath.row]
         arrayOfAVResult.remove(at: sourceIndexPath.row)
         arrayOfAVResult.insert(movedObject, at: destinationIndexPath.row)
+    }
+}
+
+extension Date {
+    
+    init?(dateString: String) {
+        let dateStringFormatter = DateFormatter()
+        dateStringFormatter.dateFormat = "yyyy-MM-dd"
+        if let d = dateStringFormatter.date(from: dateString) {
+            self.init(timeInterval: 0, since: d)
+        } else {
+            return nil
+        }
+    }
+}
+
+extension ViewController: ItemPassingDelegate {
+    func itemAdded(item: AVResult) {
+        arrayOfAVResult.insert(item, at: arrayOfAVResult.count)
+        self.tableView.reloadData()
     }
 }
