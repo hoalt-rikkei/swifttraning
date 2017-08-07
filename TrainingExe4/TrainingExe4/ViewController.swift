@@ -155,6 +155,8 @@ extension ViewController: UITableViewDataSource {
             print("Delete")
             self.arrayOfAVResult.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            //* Bổ sung: Thử thêm xoá dữ liệu trong Core Data luôn :D
         }
     }
     
@@ -186,6 +188,11 @@ extension Date {
 extension ViewController: ItemPassingDelegate {
     func itemAdded(item: AVResult) {
         arrayOfAVResult.insert(item, at: arrayOfAVResult.count)
+        //* Gợi ý: Reload lại table view sau khi update data cũng ổn nhưng khi dữ liệu lên hàng trăm hoặc nghìn dòng sẽ phải reload lại hết chỗ đó, không cần thiết => Thử tìm hiểu cách sử dụng đoạn code dưới:
+        // self.tableView.reloadRows(at: <#T##[IndexPath]#>, with: <#T##UITableViewRowAnimation#>)
+        // Dùng cách này để reload tại chỉ những row do mình truyền vào, giúp app xử lý nhẹ hơn
+        // (Chỉ gọi hàm trên sau khi đã cập nhật dữ liệu vào mảng, vì table view update row theo dữ liệu mình truyền)
+        
         self.tableView.reloadData()
     }
 }

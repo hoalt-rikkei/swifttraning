@@ -20,6 +20,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loviValue: UITextField!
     
     var datePicker: UIDatePicker!
+    
+    //* Lưu ý: Các biến delegate cần đặt weak để tránh Memory leaks
     var delegate: ItemPassingDelegate? = nil
     
     override func viewDidLoad() {
@@ -61,7 +63,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //Storing core data
+    //Storing core data 
     func storingData() {
         let newAVResult = NSEntityDescription.insertNewObject(forEntityName: "AVResult", into: context)
         newAVResult.setValue(captureDate.text, forKey: "captureDate")
